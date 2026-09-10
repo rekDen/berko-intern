@@ -78,7 +78,7 @@ export async function sendDeadlineInvitations(
   if (!ctx) return 0;
 
   const ics = buildIcs({
-    uid: `${d.id}@akturio`,
+    uid: `${d.id}@berko`,
     title: d.title,
     description: d.description,
     location: d.location,
@@ -136,7 +136,7 @@ export async function sendDeadlineCancellations(
   if (!ctx) return 0;
 
   const ics = buildIcs({
-    uid: `${d.id}@akturio`,
+    uid: `${d.id}@berko`,
     title: d.title,
     description: d.description,
     location: d.location,

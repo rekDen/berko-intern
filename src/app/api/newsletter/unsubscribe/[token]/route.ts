@@ -49,6 +49,6 @@ export async function GET(_req: NextRequest, { params }: Params) {
 
   return page(
     "Erfolgreich abgemeldet",
-    `Die Adresse <strong>${rec.email}</strong> erhält keine weiteren Newsletter von AKTURIO. Sie können dieses Fenster schließen.`,
+    `Die Adresse <strong>${rec.email}</strong> erhält keine weiteren Newsletter von BERKO.ai. Sie können dieses Fenster schließen.`,
   );
 }

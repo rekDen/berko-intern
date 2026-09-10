@@ -46,7 +46,7 @@ export function renderHtml(
 
   // … sonst einen Abmelde-Footer anhängen (DSGVO).
   if (!hadPlaceholder) {
-    html += `<div style="margin-top:24px;padding-top:12px;border-top:1px solid #e5e5e5;font-size:12px;color:#888;font-family:-apple-system,Helvetica,Arial,sans-serif;line-height:1.5">Sie erhalten diese E-Mail als Kontakt von AKTURIO. <a href="${unsubUrl}" style="color:#888">Vom Newsletter abmelden</a>.</div>`;
+    html += `<div style="margin-top:24px;padding-top:12px;border-top:1px solid #e5e5e5;font-size:12px;color:#888;font-family:-apple-system,Helvetica,Arial,sans-serif;line-height:1.5">Sie erhalten diese E-Mail als Kontakt von berko.ai. <a href="${unsubUrl}" style="color:#888">Vom Newsletter abmelden</a>.</div>`;
   }
 
   if (trackOpens && base) {

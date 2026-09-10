@@ -39,7 +39,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   return NextResponse.json(data);
 }
 
-// DELETE /api/communications/:id — creator or admin (dennis@akturio.com) may delete
+// DELETE /api/communications/:id — creator or admin (dennis@berko.ai) may delete
 export async function DELETE(_request: NextRequest, { params }: Params) {
   const { supabase, user } = await withAuth();
   if (!supabase || !user) return unauthorized();
@@ -52,7 +52,7 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
     .eq("id", id)
     .single();
 
-  const isAdmin = user.email === "dennis@akturio.com";
+  const isAdmin = user.email === "dennis@berko.ai";
   if (!existing || (!isAdmin && existing.created_by !== user.id)) {
     return NextResponse.json({ error: "Keine Berechtigung" }, { status: 403 });
   }

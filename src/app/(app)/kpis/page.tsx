@@ -585,7 +585,7 @@ function KpiCard({ kpiKey, kpi, target }: { kpiKey: string; kpi: KpiValue; targe
   );
 }
 
-const ADMIN_EMAIL = "dennis@akturio.com";
+const ADMIN_EMAIL = "dennis@berko.ai";
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 

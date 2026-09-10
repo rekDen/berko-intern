@@ -5,8 +5,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 const API_KEY = "79ap-8MQU-niR9iEvRnqXfJ34ycddyTuD-j";
 
 // Absender-/Empfänger-Konto für Lead-Benachrichtigungen. Muss ein real
-// konfiguriertes Konto in email_accounts sein (anna@akturio.com existiert nicht).
-const NOTIFY_EMAIL = "dennis@akturio.com";
+// konfiguriertes Konto in email_accounts sein (anna@berko.ai existiert nicht).
+const NOTIFY_EMAIL = "dennis@berko.ai";
 
 export async function POST(request: NextRequest) {
   if (request.headers.get("api_key") !== API_KEY) {

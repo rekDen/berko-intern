@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { withAuth, unauthorized } from "@/lib/supabase/api";
 
 const CHROME_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const TEMPLATE_URL = "https://akturio.com/akturio-vertrag.html";
+const TEMPLATE_URL = "https://berko.ai/berko-vertrag.html";
 
 export async function POST() {
   const { user } = await withAuth();

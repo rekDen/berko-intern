@@ -115,13 +115,14 @@ function buildSignature(profile: UserProfile | null): string {
   const name = profile?.name ?? "";
   const jobTitle = profile?.title ?? "";
   const email = profile?.email ?? "";
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
   return [
     `<table style="max-width: 360px; font-family: -apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif; color: #1a1a1a; font-size: 14px; line-height: 1.5;" border="0" width="100%" cellspacing="0" cellpadding="0"><tbody>`,
-    `<tr><td style="padding: 0 0 14px 0;"><img style="max-width: 320px; width: 100%; height: auto; display: block;" src="https://akturio.com/images/akturio_email_logo.png" alt="AKTURIO Logo" width="320"></td></tr>`,
-    `<tr><td style="padding: 0 0 6px 0; border-top: 2px solid #00bfa6;"><div style="height: 14px;"> </div><div style="font-size: 18px; font-weight: bold; color: #0a1829; letter-spacing: 0.3px;">${name}</div>${jobTitle ? `<div style="font-size: 12px; color: #00bfa6; font-weight: 600; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase;">${jobTitle}</div>` : ""}</td></tr>`,
-    `<tr><td style="padding: 12px 0 0 0; font-size: 13px; color: #333; line-height: 1.7;"><span style="color: #00bfa6;">✉</span> <a style="color: #1a1a1a; text-decoration: none;" href="mailto:${email}">${email}</a> <br><span style="color: #00bfa6;">☎</span> <a style="color: #1a1a1a; text-decoration: none;" href="tel:+4934160823370">0341 608 23 370</a> <br><span style="color: #00bfa6;">⌂</span> <a style="color: #1a1a1a; text-decoration: none;" href="https://www.akturio.com">www.akturio.com</a></td></tr>`,
-    `<tr><td style="padding: 12px 0 0 0; font-size: 12px; color: #555; line-height: 1.5;"><strong style="color: #0a1829;">AKTURIO GbR</strong> <br>Pfaffendorfer Str. 26a · 04105 Leipzig</td></tr>`,
-    `<tr><td style="padding: 14px 0 0 0;"><div style="border-top: 1px solid #e5e5e5; padding-top: 10px; font-size: 10px; color: #888; line-height: 1.45;">AKTURIO GbR · Sitz: Leipzig · Vertretungsberechtigter Geschäftsführer: Aleksandr Hermsdorf, Dennis Berkovich <br>Diese E-Mail enthält vertrauliche Informationen. Wenn Sie nicht der richtige Empfänger sind, informieren Sie bitte umgehend den Absender und löschen diese E-Mail.</div></td></tr>`,
+    `<tr><td style="padding: 0 0 14px 0;"><img style="max-width: 220px; width: 100%; height: auto; display: block;" src="${origin}/berko-ki.png" alt="Berko AI Logo" width="220"></td></tr>`,
+    `<tr><td style="padding: 0 0 6px 0; border-top: 2px solid #1D5FD1;"><div style="height: 14px;"> </div><div style="font-size: 18px; font-weight: bold; color: #0a1829; letter-spacing: 0.3px;">${name}</div>${jobTitle ? `<div style="font-size: 12px; color: #1D5FD1; font-weight: 600; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase;">${jobTitle}</div>` : ""}</td></tr>`,
+    `<tr><td style="padding: 12px 0 0 0; font-size: 13px; color: #333; line-height: 1.7;"><span style="color: #1D5FD1;">✉</span> <a style="color: #1a1a1a; text-decoration: none;" href="mailto:${email}">${email}</a> <br><span style="color: #1D5FD1;">☎</span> <a style="color: #1a1a1a; text-decoration: none;" href="tel:+4916092313357">0160 92313357</a> <br><span style="color: #1D5FD1;">⌂</span> <a style="color: #1a1a1a; text-decoration: none;" href="https://www.berko.ai">www.berko.ai</a></td></tr>`,
+    `<tr><td style="padding: 12px 0 0 0; font-size: 12px; color: #555; line-height: 1.5;"><strong style="color: #0a1829;">Berko Operations GmbH</strong> <br>Dovestraße 5 · 10587 Berlin</td></tr>`,
+    `<tr><td style="padding: 14px 0 0 0;"><div style="border-top: 1px solid #e5e5e5; padding-top: 10px; font-size: 10px; color: #888; line-height: 1.45;">Berko Operations GmbH · Sitz: Berlin · Vertretungsberechtigte Geschäftsführer: Dennis Berkovich, Fritz Irmscher <br>Diese E-Mail enthält vertrauliche Informationen. Wenn Sie nicht der richtige Empfänger sind, informieren Sie bitte umgehend den Absender und löschen diese E-Mail.</div></td></tr>`,
     `</tbody></table>`,
   ].join("");
 }
@@ -197,10 +198,10 @@ function SetupDialog({
   onSaved: () => void;
 }) {
   const [form, setForm] = useState({
-    email: "daniel.tauscher@akturio.com",
+    email: "daniel.tauscher@berko.ai",
     imap_host: "imap.ionos.de",
     imap_port: "993",
-    imap_user: "daniel.tauscher@akturio.com",
+    imap_user: "daniel.tauscher@berko.ai",
     imap_password: "",
   });
   const [showPassword, setShowPassword] = useState(false);

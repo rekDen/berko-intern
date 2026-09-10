@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { withAuth, unauthorized } from "@/lib/supabase/api";
 
-const TEMPLATE_URL = "https://akturio.com/akturio-vertrag.html";
-const BASE = "https://akturio.com";
+const TEMPLATE_URL = "https://berko.ai/berko-vertrag.html";
+const BASE = "https://berko.ai";
 
 function toAbsolute(href: string, base = BASE): string {
   if (!href || href.startsWith("data:")) return href;

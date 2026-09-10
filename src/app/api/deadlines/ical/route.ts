@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     const prefix = d.type === "frist" ? "[Frist] " : "[Termin] ";
     const lines: string[] = [
       "BEGIN:VEVENT",
-      `UID:deadline-${d.id}@akturio`,
+      `UID:deadline-${d.id}@berko`,
       `DTSTAMP:${now}`,
       foldLine(icalStart(d.date, d.time ?? null)),
       foldLine(icalEnd(d.date, d.time ?? null)),
@@ -92,7 +92,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(cal, {
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": 'attachment; filename="akturio-kalender.ics"',
+      "Content-Disposition": 'attachment; filename="berko-kalender.ics"',
       "Cache-Control": "no-cache, no-store, must-revalidate",
     },
   });
