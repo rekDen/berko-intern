@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Berko-Markenskala.
+   500 = #1D5FD1 (Berko Blue, Markenakzent).
+   Erzeugt Utilities wie text-berko-600, bg-berko-500, border-berko … */
+@theme {
+  --color-berko-50:  oklch(97.0% 0.015 260.8);
+  --color-berko-100: oklch(93.5% 0.035 260.8);
+  --color-berko-200: oklch(86.0% 0.070 260.8);
+  --color-berko-300: oklch(76.0% 0.110 260.8);
+  --color-berko-400: oklch(64.0% 0.155 260.8);
+  --color-berko-500: oklch(51.5% 0.188 260.8);
+  --color-berko-600: oklch(45.0% 0.185 261.5);
+  --color-berko-700: oklch(38.5% 0.170 262.5);
+  --color-berko-800: oklch(33.0% 0.145 263.5);
+  --color-berko-900: oklch(28.0% 0.115 264.5);
+  --color-berko-950: oklch(19.0% 0.080 266.0);
+  --color-berko: var(--color-berko-500);
+  --color-berko-dark: var(--color-berko-700);
+
+  /* App-Akzent global auf Berko Blue umstellen: die bisher genutzten
+     Akzentfarben indigo & orange zeigen jetzt auf die Berko-Skala. Dadurch
+     werden alle vorhandenen text-/bg-/border-/ring-indigo|orange-Klassen
+     Berko Blue, ohne dass hunderte Klassennamen geändert werden müssen. */
+  --color-indigo-50:  var(--color-berko-50);
+  --color-indigo-100: var(--color-berko-100);
+  --color-indigo-200: var(--color-berko-200);
+  --color-indigo-300: var(--color-berko-300);
+  --color-indigo-400: var(--color-berko-400);
+  --color-indigo-500: var(--color-berko-500);
+  --color-indigo-600: var(--color-berko-600);
+  --color-indigo-700: var(--color-berko-700);
+  --color-indigo-800: var(--color-berko-800);
+  --color-indigo-900: var(--color-berko-900);
+  --color-indigo-950: var(--color-berko-950);
+
+  --color-orange-50:  var(--color-berko-50);
+  --color-orange-100: var(--color-berko-100);
+  --color-orange-200: var(--color-berko-200);
+  --color-orange-300: var(--color-berko-300);
+  --color-orange-400: var(--color-berko-400);
+  --color-orange-500: var(--color-berko-500);
+  --color-orange-600: var(--color-berko-600);
+  --color-orange-700: var(--color-berko-700);
+  --color-orange-800: var(--color-berko-800);
+  --color-orange-900: var(--color-berko-900);
+  --color-orange-950: var(--color-berko-950);
+
+  /* Neutralskala (Text/Flächen/Rahmen) auf die Berko-Palette umgestellt:
+     50 = Arctic White (Haupthintergrund), 100 = Ice Grey (Flächen),
+     200 = Cloud Blue (Linien & Rahmen), 500 = Slate Grey (Sekundärtext),
+     900 = Deep Navy (Primärfarbe). Überschreibt gray UND slate, da beide
+     im Code als neutrale Grundskala verwendet werden — inkl. aller
+     dark:-Varianten (die dunklen Stufen 700–950 sind ebenfalls
+     Navy-getönt, das trägt den Look ins Dark Mode). */
+  --color-gray-50:  oklch(98.1% 0.005 258.3);
+  --color-gray-100: oklch(96.0% 0.009 258.3);
+  --color-gray-200: oklch(91.7% 0.017 259.4);
+  --color-gray-300: oklch(76.2% 0.022 258.6);
+  --color-gray-400: oklch(60.8% 0.027 257.9);
+  --color-gray-500: oklch(45.3% 0.032 257.1);
+  --color-gray-600: oklch(39.2% 0.037 258.6);
+  --color-gray-700: oklch(33.1% 0.043 260.2);
+  --color-gray-800: oklch(27.0% 0.048 261.8);
+  --color-gray-900: oklch(20.9% 0.053 263.3);
+  --color-gray-950: oklch(13.5% 0.040 264.0);
+
+  --color-slate-50:  var(--color-gray-50);
+  --color-slate-100: var(--color-gray-100);
+  --color-slate-200: var(--color-gray-200);
+  --color-slate-300: var(--color-gray-300);
+  --color-slate-400: var(--color-gray-400);
+  --color-slate-500: var(--color-gray-500);
+  --color-slate-600: var(--color-gray-600);
+  --color-slate-700: var(--color-gray-700);
+  --color-slate-800: var(--color-gray-800);
+  --color-slate-900: var(--color-gray-900);
+  --color-slate-950: var(--color-gray-950);
+
+  /* Logo-Wordmark ("Berko KI"): text-foreground + Gradient-Utilities
+     from-brand-cyan / to-accent-strong. foreground wird unten für den
+     Dark Mode umdefiniert (Deep Navy im Light Mode, fast Weiß im Dark
+     Mode) — brand-cyan/accent-strong bleiben in beiden Modi fix, da der
+     Gradient auf hellem UND dunklem Grund lesbar bleiben muss. */
+  --color-foreground: var(--color-gray-900);
+  --color-brand-cyan: oklch(60.0% 0.150 220);
+  --color-accent-strong: var(--color-berko-500);
+}
+
+/* Class-based dark mode: activates dark: prefix when <html> has .dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-foreground: var(--color-gray-50);
+}
+
+/* Scrollbar — light mode */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Scrollbar — dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+@keyframes toast-in {
+  from { transform: translateX(calc(100% + 1rem)); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+.animate-toast-in {
+  animation: toast-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shrink {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
