@@ -13,7 +13,7 @@ const STATUS_LABEL: Record<CampaignStatus, string> = {
 const STATUS_CLS: Record<CampaignStatus, string> = {
   draft: "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300",
   scheduled: "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400",
-  sending: "bg-akturio-100 text-akturio-700 dark:bg-akturio-500/10 dark:text-akturio-300",
+  sending: "bg-berko-100 text-berko-700 dark:bg-berko-500/10 dark:text-berko-300",
   paused: "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300",
   sent: "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400",
   failed: "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400",
@@ -54,12 +54,12 @@ export default function NewsletterPage() {
     <div className="max-w-5xl mx-auto p-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-          <Mail className="w-5 h-5 text-akturio" /> Newsletter
+          <Mail className="w-5 h-5 text-berko" /> Newsletter
         </h1>
         <button
           onClick={createCampaign}
           disabled={creating}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-akturio text-white hover:bg-akturio-dark transition-colors disabled:opacity-50"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-berko text-white hover:bg-berko-dark transition-colors disabled:opacity-50"
         >
           {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
           Neue Kampagne
@@ -79,7 +79,7 @@ export default function NewsletterPage() {
             <Link
               key={c.id}
               href={`/newsletter/${c.id}`}
-              className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-800 hover:border-akturio/50 transition-colors"
+              className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-800 hover:border-berko/50 transition-colors"
             >
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">

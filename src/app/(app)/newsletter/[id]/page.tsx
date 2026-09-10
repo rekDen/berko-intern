@@ -21,7 +21,7 @@ const STATUS_LABEL: Record<CampaignStatus, string> = {
   paused: "Pausiert", sent: "Versendet", failed: "Fehler",
 };
 
-const input = "w-full text-sm rounded-lg border border-gray-200 bg-white px-3 py-2 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-akturio/30";
+const input = "w-full text-sm rounded-lg border border-gray-200 bg-white px-3 py-2 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-berko/30";
 const label = "block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1";
 
 function parseManual(text: string): ManualRecipient[] {
@@ -162,7 +162,7 @@ export default function CampaignEditor() {
             onChange={(e) => set("name", e.target.value)}
             className="text-lg font-semibold bg-transparent text-gray-900 dark:text-white focus:outline-none min-w-0 disabled:opacity-70"
           />
-          <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-akturio-100 text-akturio-700 dark:bg-akturio-500/10 dark:text-akturio-300 flex-shrink-0">{STATUS_LABEL[c.status]}</span>
+          <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-berko-100 text-berko-700 dark:bg-berko-500/10 dark:text-berko-300 flex-shrink-0">{STATUS_LABEL[c.status]}</span>
         </div>
         <button onClick={remove} className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10"><Trash2 className="w-4 h-4" /></button>
       </div>
@@ -177,7 +177,7 @@ export default function CampaignEditor() {
             { label: "Abgemeldet", value: c.unsubscribed_count, icon: Ban },
           ].map((s) => (
             <div key={s.label} className="rounded-xl border border-gray-200 dark:border-gray-800 p-3 text-center">
-              <s.icon className="w-4 h-4 mx-auto text-akturio mb-1" />
+              <s.icon className="w-4 h-4 mx-auto text-berko mb-1" />
               <div className="text-lg font-semibold text-gray-900 dark:text-white">{s.value}</div>
               <div className="text-[11px] text-gray-400">{s.label}</div>
             </div>
@@ -214,7 +214,7 @@ export default function CampaignEditor() {
               <button
                 key={a.id} disabled={!editable}
                 onClick={() => set("sender_account_id", a.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs border transition-colors ${on ? "border-akturio bg-akturio/10 text-akturio-700 dark:text-akturio-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}
+                className={`px-3 py-1.5 rounded-lg text-xs border transition-colors ${on ? "border-berko bg-berko/10 text-berko-700 dark:text-berko-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}
               >{a.email}</button>
             );
           })}
@@ -240,7 +240,7 @@ export default function CampaignEditor() {
               <div className="flex flex-wrap gap-1.5">
                 {categories.map((cat) => (
                   <button key={cat} disabled={!editable} onClick={() => setSegment({ categories: toggleArr(c.segment?.categories, cat) })}
-                    className={`px-2 py-1 rounded-md text-xs border ${c.segment?.categories?.includes(cat) ? "border-akturio bg-akturio/10 text-akturio-700 dark:text-akturio-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}>{cat}</button>
+                    className={`px-2 py-1 rounded-md text-xs border ${c.segment?.categories?.includes(cat) ? "border-berko bg-berko/10 text-berko-700 dark:text-berko-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}>{cat}</button>
                 ))}
                 {categories.length === 0 && <span className="text-xs text-gray-400">—</span>}
               </div>
@@ -250,7 +250,7 @@ export default function CampaignEditor() {
               <div className="flex flex-wrap gap-1.5">
                 {leadSources.map((ls) => (
                   <button key={ls} disabled={!editable} onClick={() => setSegment({ lead_sources: toggleArr(c.segment?.lead_sources, ls) })}
-                    className={`px-2 py-1 rounded-md text-xs border ${c.segment?.lead_sources?.includes(ls) ? "border-akturio bg-akturio/10 text-akturio-700 dark:text-akturio-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}>{ls}</button>
+                    className={`px-2 py-1 rounded-md text-xs border ${c.segment?.lead_sources?.includes(ls) ? "border-berko bg-berko/10 text-berko-700 dark:text-berko-300" : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400"}`}>{ls}</button>
                 ))}
                 {leadSources.length === 0 && <span className="text-xs text-gray-400">—</span>}
               </div>
@@ -262,7 +262,7 @@ export default function CampaignEditor() {
           <textarea value={manualText} disabled={!editable} onChange={(e) => { setManualText(e.target.value); setPreviewCount(null); }} rows={3} className={`${input} font-mono text-xs`} placeholder="max@example.com&#10;Firma GmbH <info@firma.de>" />
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={preview} className="text-xs px-3 py-1.5 rounded-lg border border-akturio text-akturio hover:bg-akturio/10">Empfänger zählen</button>
+          <button onClick={preview} className="text-xs px-3 py-1.5 rounded-lg border border-berko text-berko hover:bg-berko/10">Empfänger zählen</button>
           {previewCount !== null && (
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {previewCount} Empfänger{previewHours ? ` · Versand dauert bei aktueller Drosselung ca. ${previewHours} Std.` : ""}
@@ -299,19 +299,19 @@ export default function CampaignEditor() {
           <button onClick={save} disabled={saving} className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50">
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} Speichern
           </button>
-          <button onClick={() => send(null)} className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-akturio text-white hover:bg-akturio-dark">
+          <button onClick={() => send(null)} className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-berko text-white hover:bg-berko-dark">
             <Send className="w-4 h-4" /> Jetzt senden
           </button>
           <div className="flex items-center gap-1.5">
             <input type="datetime-local" value={schedule} onChange={(e) => setSchedule(e.target.value)} className={`${input} !w-auto`} />
-            <button onClick={() => schedule && send(new Date(schedule).toISOString())} disabled={!schedule} className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border border-akturio text-akturio hover:bg-akturio/10 disabled:opacity-50">
+            <button onClick={() => schedule && send(new Date(schedule).toISOString())} disabled={!schedule} className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border border-berko text-berko hover:bg-berko/10 disabled:opacity-50">
               <Clock className="w-4 h-4" /> Planen
             </button>
           </div>
         </div>
       ) : (
         <div className="flex items-center gap-3">
-          <button onClick={triggerProcess} className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border border-akturio text-akturio hover:bg-akturio/10">
+          <button onClick={triggerProcess} className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border border-berko text-berko hover:bg-berko/10">
             <PlayCircle className="w-4 h-4" /> Queue verarbeiten
           </button>
           <span className="text-xs text-gray-400">Der Versand läuft gedrosselt im Hintergrund (Cron).</span>
@@ -326,7 +326,7 @@ export default function CampaignEditor() {
             {c.recipients.map((r) => (
               <div key={r.id} className="flex items-center gap-3 px-4 py-2 text-sm">
                 <span className="min-w-0 flex-1 truncate text-gray-700 dark:text-gray-300">{r.name ? `${r.name} · ` : ""}{r.email}</span>
-                {r.opened_at && <Eye className="w-3.5 h-3.5 text-akturio flex-shrink-0" />}
+                {r.opened_at && <Eye className="w-3.5 h-3.5 text-berko flex-shrink-0" />}
                 {r.error && <span title={r.error}><AlertCircle className="w-3.5 h-3.5 text-red-500 flex-shrink-0" /></span>}
                 <span className={`text-xs flex-shrink-0 ${r.status === "sent" ? "text-emerald-600" : r.status === "failed" ? "text-red-500" : r.status === "unsubscribed" ? "text-gray-400" : "text-gray-400"}`}>{r.status}</span>
               </div>
