@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import twilio from "twilio";
+import { readVerifiedTwilioForm } from "@/lib/twilio-webhook";
 
 const { VoiceResponse } = twilio.twiml;
 
@@ -8,8 +9,9 @@ const TWILIO_NUMBER = process.env.TWILIO_AURABAD_PHONE_NUMBER!;
 const FORWARD_TO = ["+4916092313357"];
 
 export async function POST(request: NextRequest) {
-  const body = await request.formData();
-  const to = body.get("To") as string | null;
+  const params = await readVerifiedTwilioForm(request);
+  if (!params) return new NextResponse("Forbidden", { status: 403 });
+  const to = params.To ?? null;
 
   const response = new VoiceResponse();
 
