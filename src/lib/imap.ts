@@ -9,6 +9,7 @@ import { ImapFlow } from "imapflow";
 import { simpleParser } from "mailparser";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { uploadEmailAttachment } from "@/lib/email-attachments";
+import { decryptSecret, encryptSecret, isEncrypted } from "@/lib/secrets";
 import type { EmailAttachment } from "@/types";
 
 // ─── Typen ─────────────────────────────────────────────────────────────────
@@ -37,18 +38,33 @@ export async function getImapCredentials(
   const admin = createAdminClient();
   const { data, error } = await admin
     .from("email_accounts")
-    .select("email, imap_host, imap_port, imap_user, imap_password, tenant_id")
+    .select("id, email, imap_host, imap_port, imap_user, imap_password, tenant_id")
     .eq("user_id", userId)
     .single();
 
   if (error || !data) return null;
+
+  const stored = data.imap_password as string;
+  const password = decryptSecret(stored);
+
+  // Altbestand im Klartext beim ersten Lesen nachträglich verschlüsseln.
+  if (!isEncrypted(stored)) {
+    try {
+      await admin
+        .from("email_accounts")
+        .update({ imap_password: encryptSecret(password) })
+        .eq("id", data.id);
+    } catch (err) {
+      console.error("[imap] Passwort konnte nicht nachverschlüsselt werden:", err instanceof Error ? err.message : err);
+    }
+  }
 
   return {
     email: data.email,
     host: data.imap_host,
     port: data.imap_port,
     user: data.imap_user,
-    password: data.imap_password,
+    password,
     tenantId: data.tenant_id as string,
   };
 }
