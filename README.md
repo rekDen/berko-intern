@@ -1,6 +1,6 @@
-# Berko AI – Internes CRM
+# Berko AI – CRM
 
-Internes CRM für das Berko-AI-Team: Kontakte, Deals, Vertrieb, Telefonie, E-Mail, Newsletter, Fristen und Dokumente in einer Oberfläche. Alle Nutzer arbeiten in einem gemeinsamen Workspace (ein Tenant).
+Berko-AI CRM: Kontakte, Deals, Vertrieb, Telefonie, E-Mail, Newsletter, Fristen und Dokumente in einer Oberfläche. Alle Nutzer arbeiten in einem gemeinsamen Workspace (ein Tenant).
 
 Das npm-Paket heißt `intern-crm`, das GitHub-Repository `berko-intern`. Die Codebasis teilt sich Architektur und viele Bausteine mit `berko-immo`. Die Konventionen stehen in [00-architecture-overview.md](00-architecture-overview.md).
 
