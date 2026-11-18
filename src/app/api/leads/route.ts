@@ -1,15 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { createAdminClient } from "@/lib/supabase/admin";
-
-const API_KEY = "79ap-8MQU-niR9iEvRnqXfJ34ycddyTuD-j";
+import { apiKeyMatches } from "@/lib/api-key";
 
 // Absender-/Empfänger-Konto für Lead-Benachrichtigungen. Muss ein real
 // konfiguriertes Konto in email_accounts sein (anna@berko.ai existiert nicht).
 const NOTIFY_EMAIL = "dennis@berko.ai";
 
 export async function POST(request: NextRequest) {
-  if (request.headers.get("api_key") !== API_KEY) {
+  const expectedKey = process.env.LEADS_API_KEY;
+  if (!expectedKey) {
+    console.error("[leads] LEADS_API_KEY ist nicht gesetzt – Anfrage abgelehnt.");
+  }
+  if (!apiKeyMatches(request.headers.get("api_key"), expectedKey)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
