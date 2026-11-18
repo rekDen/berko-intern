@@ -5,9 +5,11 @@ export async function middleware(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // Skip auth check if Supabase is not configured
+  // Ohne Supabase-Konfiguration lässt sich niemand authentifizieren:
+  // Anfrage ablehnen statt ungeschützt durchzulassen (fail closed).
   if (!url || !key) {
-    return NextResponse.next({ request });
+    console.error("[middleware] NEXT_PUBLIC_SUPABASE_URL/ANON_KEY fehlen – Anfrage abgelehnt.");
+    return new NextResponse("Service nicht konfiguriert", { status: 503 });
   }
 
   let supabaseResponse = NextResponse.next({ request });
@@ -43,8 +45,7 @@ export async function middleware(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/auth") &&
     !request.nextUrl.pathname.startsWith("/api/leads") &&
     !request.nextUrl.pathname.startsWith("/api/twilio/voice") &&
-    !request.nextUrl.pathname.startsWith("/api/twilio/aurabad-voice") &&
-    !request.nextUrl.pathname.startsWith("/api/leads")
+    !request.nextUrl.pathname.startsWith("/api/twilio/aurabad-voice")
   ) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
